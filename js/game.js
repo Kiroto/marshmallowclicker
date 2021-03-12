@@ -1,48 +1,82 @@
 let counter = 0;
 let mps = 0;
 
+getCounter = () => {
+    return counter.toFixed(0)
+}
+
+getMps = () => {
+    return mps.toFixed(1)
+}
+
 class ShopItem {
     constructor(name, price, mps, pictureUrl) {
         this.name = name;
-        this.price = price;
+        this.basePrice = price;
+        this.timesBought = 0;
         this.mps = mps;
-        this.pictureUrl = pictureUrl
+        this.pictureUrl = pictureUrl;
+
+        this.baseNode = document.createElement("div");
+        this.priceNode = document.createElement("span");
+        this.updatePrice(price)
+    }
+
+    updatePrice = () => {
+        this.priceNode.textContent = `$ ${this.getSalePrice().toFixed(0)}`
+    }
+
+    initializeBaseNode = () => {
+        const itemButton = document.createElement("button");
+        const itemButtonImage = document.createElement("img");
+        itemButtonImage.src = this.pictureUrl;
+        itemButton.appendChild(itemButtonImage);
+        itemButton.onclick = this.buy
+        this.baseNode.appendChild(itemButton)
+
+        const shopLabel = document.createElement("span");
+        shopLabel.textContent = this.name;
+        this.baseNode.appendChild(shopLabel);
+        this.baseNode.appendChild(this.priceNode);
+    }
+
+    buy = () => {
+        const salePrice = this.getSalePrice()
+        if (salePrice > counter) {
+            alert("Señor uste no tiene cualto");
+        } else {
+            counter -= salePrice;
+            this.timesBought += 1;
+            this.updatePrice();
+            mps += this.mps;
+        }
+    }
+
+    getSalePrice = () => {
+        return Math.floor(Math.pow(this.basePrice, (this.timesBought + 15)/15))
     }
 }
 
 let shop = [
-  {
-    name: "Guarina",
-    price: 35,
-    mps: 0.2,
-    pictureUrl: "https://cdn2.hubspot.net/hubfs/3857073/guari.png",
-  },
-  {
-    name: "Kripikrin",
-    price: 15,
-    mps: 0.1,
-    pictureUrl:
-      "https://krispykremepr.com/wp-content/uploads/2018/01/Original-Glazed-Doughnut-0029.png",
-  },
+  new ShopItem(
+    "Guarina",
+    15,
+    0.2,
+    "https://cdn2.hubspot.net/hubfs/3857073/guari.png"
+  ),
+  new ShopItem(
+    "Kripikrin",
+    100,
+    1,
+    "https://krispykremepr.com/wp-content/uploads/2018/01/Original-Glazed-Doughnut-0029.png"
+  ),
 ];
 
 const addItemsToShop = () => {
     const shopArea = document.getElementById("shop")
     shop.forEach((item) => {
-        const shopItemArea = document.createElement("div")
-        const shopLabel = document.createElement("span")
-        shopLabel.textContent = item.name
-        const itemButton = document.createElement("button");
-        const itemButtonImage = document.createElement("img");
-        itemButtonImage.src = item.pictureUrl
-
-        itemButton.appendChild(itemButtonImage);
-        itemButton.onclick = () => {
-            comprar(item)
-        }
-        shopItemArea.appendChild(itemButton);
-        shopItemArea.appendChild(shopLabel)
-        shopArea.appendChild(shopItemArea);
+        item.initializeBaseNode()
+        shopArea.appendChild(item.baseNode);
     })
 }
 
@@ -60,27 +94,18 @@ const onUpdate = () => {
     delta = (Date.now() - lastUpdated) / 1000;
     lastUpdated = Date.now()
     counter += mps * delta;
-    counterLabel.textContent = counter.toFixed(0);
+
+    counterLabel.textContent = getCounter();
+    mpsLabel.textContent = getMps();
 }
 
-const onGuarinaClick = () => {
-    comprar(0)
-}
-
-const comprar = (shopItem) => {
-    precio = shopItem.price;
-    if (precio > counter) {
-        alert("Señor uste no tiene cualto")
-    } else {
-        counter -= precio;
-        mps += shopItem.mps;
-        mpsLabel.textContent = mps;
-    }
+const onLongUpdate = () => {
+    document.title = `[${getCounter()}] Marshmallows!`;
 }
 
 window.onload = function () {
+    button.onclick = onButtonClick;
     addItemsToShop()
     setInterval(onUpdate, 5);
+    setInterval(onLongUpdate, 2000)
 };
-
-button.onclick = onButtonClick

@@ -1,11 +1,11 @@
 let counter = 0;
 let mps = 0;
 
-getCounter = () => {
+const getCounter = () => {
     return counter.toFixed(0)
 }
 
-getMps = () => {
+const getMps = () => {
     return mps.toFixed(1)
 }
 
@@ -19,7 +19,7 @@ class ShopItem {
 
         this.baseNode = document.createElement("div");
         this.priceNode = document.createElement("span");
-        this.updatePrice(price)
+        this.updatePrice()
     }
 
     updatePrice = () => {
@@ -80,8 +80,6 @@ const addItemsToShop = () => {
     })
 }
 
-let lastUpdated = Date.now()
-
 const button = document.getElementById("marshmallow");
 const counterLabel = document.getElementById("textoContador");
 const mpsLabel = document.getElementById("mps");
@@ -89,6 +87,8 @@ const mpsLabel = document.getElementById("mps");
 const onButtonClick = () => {
     counter = counter + 1;
 }
+
+let lastUpdated = Date.now();
 
 const onUpdate = () => {
     delta = (Date.now() - lastUpdated) / 1000;

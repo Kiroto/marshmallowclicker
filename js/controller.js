@@ -12,12 +12,16 @@ const generadorAVista = (generador, id) => {
     const espacioGenerador = document.createElement("div")
     const infoGenerador = document.createElement("span");
     const botonCompra = document.createElement("button")
+    const ImagenGenerador = document.createElement("img");
+    ImagenGenerador.src = generador.ImagenDeTienda
+    ImagenGenerador.classList.add ("imagenProducto")
     infoGenerador.innerText = `${generador.cuenta} - ${generador.nombre} ($${generador.getPrecio()})`
     botonCompra.innerText = "Comprar"
     botonCompra.onclick = () => {
         comprarGenerador(id)
         infoGenerador.innerText = `${generador.cuenta} - ${generador.nombre} ($${generador.getPrecio()})`
     }
+    espacioGenerador.appendChild(ImagenGenerador)
     espacioGenerador.appendChild(infoGenerador);
     espacioGenerador.appendChild(botonCompra)
     return espacioGenerador;

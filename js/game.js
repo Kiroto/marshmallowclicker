@@ -1,111 +1,68 @@
-let counter = 0;
-let mps = 0;
+let contadorGalletas = 0
+let galletasPorSegundo = 12
 
-const getCounter = () => {
-    return counter.toFixed(0)
-}
+const listaGeneradores = [
+    Generador("Guarina", 15, 0.1),
+    Generador("Asukal", 100, 1),
+    Generador("Chocolate", 500, 10),
+]
 
-const getMps = () => {
-    return mps.toFixed(1)
-}
-
-class ShopItem {
-    constructor(name, price, mps, pictureUrl) {
-        this.name = name;
-        this.basePrice = price;
-        this.timesBought = 0;
-        this.mps = mps;
-        this.pictureUrl = pictureUrl;
-
-        this.baseNode = document.createElement("div");
-        this.priceNode = document.createElement("span");
-        this.updatePrice()
-    }
-
-    updatePrice = () => {
-        this.priceNode.textContent = `$ ${this.getSalePrice().toFixed(0)}`
-    }
-
-    initializeBaseNode = () => {
-        const itemButton = document.createElement("button");
-        const itemButtonImage = document.createElement("img");
-        itemButtonImage.src = this.pictureUrl;
-        itemButton.appendChild(itemButtonImage);
-        itemButton.onclick = this.buy
-        this.baseNode.appendChild(itemButton)
-
-        const shopLabel = document.createElement("span");
-        shopLabel.textContent = this.name;
-        this.baseNode.appendChild(shopLabel);
-        this.baseNode.appendChild(this.priceNode);
-    }
-
-    buy = () => {
-        const salePrice = this.getSalePrice()
-        if (salePrice > counter) {
-            alert("Señor uste no tiene cualto");
-        } else {
-            counter -= salePrice;
-            this.timesBought += 1;
-            this.updatePrice();
-            mps += this.mps;
+class Generador {
+    constructor(nombre, precio, galletasPorSegundo) {
+        this.cuenta = 0
+        this.nombre = nombre
+        this.precioBase = precio
+        this.galletasPorSegundo = galletasPorSegundo
+        this.getPrecio = () => {
+            return Math.pow(this.precioBase, (15 + this.cuenta / 15))
         }
+        this.getTotalCPS = () => {
+          return this.cuenta * this.galletasPorSegundo
+        };
     }
+}
 
-    getSalePrice = () => {
-        return Math.floor(Math.pow(this.basePrice, (this.timesBought + 15)/15))
+const recalcularGalletasPorSegundo = () => {
+    let nuevasGalletasPorSegundo = 0;
+    listaGeneradores.forEach((generador) => {
+        nuevasGalletasPorSegundo += generador.getTotalCPS()
+    });
+    galletasPorSegundo = nuevasGalletasPorSegundo
+}
+
+const clickGalleta = () => {
+    contadorGalletas++
+}
+
+/**
+ * @param {Number} precio La cantidad a deducir
+ * @returns {Boolean} Si fue satisfactoria la transaccion
+ */
+const deducir = (precio) => {
+    if (contadorGalletas < precio) {
+        return false
+    } else {
+        contadorGalletas -= precio
+        return true
     }
 }
 
-let shop = [
-  new ShopItem(
-    "Guarina",
-    15,
-    0.2,
-    "https://cdn2.hubspot.net/hubfs/3857073/guari.png"
-  ),
-  new ShopItem(
-    "Kripikrin",
-    100,
-    1,
-    "https://krispykremepr.com/wp-content/uploads/2018/01/Original-Glazed-Doughnut-0029.png"
-  ),
-];
-
-const addItemsToShop = () => {
-    const shopArea = document.getElementById("shop")
-    shop.forEach((item) => {
-        item.initializeBaseNode()
-        shopArea.appendChild(item.baseNode);
-    })
+/**
+ * @param {Number} id La posicion del generador en la lista de generadores
+ */
+const comprarGenerador = (id) => {
+    const generador = listaGeneradores[id]
+    const pudoComprar = deducir(generador.getPrecio());
+    if (pudoComprar) {
+        generador.cuenta += 1
+        recalcularGalletasPorSegundo();
+    }
+    return pudoComprar
 }
 
-const button = document.getElementById("marshmallow");
-const counterLabel = document.getElementById("textoContador");
-const mpsLabel = document.getElementById("mps");
-
-const onButtonClick = () => {
-    counter = counter + 1;
+/**
+ * @param {Number} delta El tiempo en milisegundos
+ */
+const tick = (delta) => {
+    contadorGalletas += galletasPorSegundo / (delta / 1000)
 }
-
-let lastUpdated = Date.now();
-
-const onUpdate = () => {
-    delta = (Date.now() - lastUpdated) / 1000;
-    lastUpdated = Date.now()
-    counter += mps * delta;
-
-    counterLabel.textContent = getCounter();
-    mpsLabel.textContent = getMps();
-}
-
-const onLongUpdate = () => {
-    document.title = `[${getCounter()}] Marshmallows!`;
-}
-
-window.onload = function () {
-    button.onclick = onButtonClick;
-    addItemsToShop()
-    setInterval(onUpdate, 5);
-    setInterval(onLongUpdate, 2000)
-};

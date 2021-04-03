@@ -1,12 +1,3 @@
-let contadorGalletas = 0
-let galletasPorSegundo = 12
-
-const listaGeneradores = [
-    Generador("Guarina", 15, 0.1),
-    Generador("Asukal", 100, 1),
-    Generador("Chocolate", 500, 10),
-]
-
 class Generador {
     constructor(nombre, precio, galletasPorSegundo) {
         this.cuenta = 0
@@ -14,13 +5,22 @@ class Generador {
         this.precioBase = precio
         this.galletasPorSegundo = galletasPorSegundo
         this.getPrecio = () => {
-            return Math.pow(this.precioBase, (15 + this.cuenta / 15))
+            return Math.floor(Math.pow(this.precioBase, ((15 + this.cuenta) / 15)))
         }
         this.getTotalCPS = () => {
           return this.cuenta * this.galletasPorSegundo
         };
     }
 }
+
+let contadorGalletas = 0
+let galletasPorSegundo = 0
+
+const listaGeneradores = [
+    new Generador("Guarina", 15, 0.1),
+    new Generador("Asukal", 100, 1),
+    new Generador("Chocolate", 500, 10),
+]
 
 const recalcularGalletasPorSegundo = () => {
     let nuevasGalletasPorSegundo = 0;
@@ -64,5 +64,6 @@ const comprarGenerador = (id) => {
  * @param {Number} delta El tiempo en milisegundos
  */
 const tick = (delta) => {
-    contadorGalletas += galletasPorSegundo / (delta / 1000)
+    delta /= 1000
+    contadorGalletas += galletasPorSegundo * delta
 }

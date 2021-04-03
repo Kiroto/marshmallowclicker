@@ -1,0 +1,8 @@
+#main {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+#clickArea {
+    width: 50%;
+}

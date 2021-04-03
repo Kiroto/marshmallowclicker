@@ -20,6 +20,7 @@ const listaGeneradores = [
     new Generador("Guarina", 15, 0.1),
     new Generador("Asukal", 100, 1),
     new Generador("Chocolate", 500, 10),
+    new Generador("Fabrica de Marshmallows", 2000, 35)
 ]
 
 const recalcularGalletasPorSegundo = () => {

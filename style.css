@@ -5,6 +5,10 @@ body {
     background-image: url("./img/fondo.png");
 }
 
+img {
+  object-fit: cover;
+}
+
 #main {
     display: flex;
     flex-wrap: nowrap;
@@ -65,5 +69,6 @@ body {
 
 
 .imagenProducto{
+    height: 80px;
     width: 80px;
 }

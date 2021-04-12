@@ -22,7 +22,10 @@ const listaGeneradores = [
     new Generador("hASUKhAL", 100, 1, "https://i.pinimg.com/originals/e2/ac/9e/e2ac9ef44dae4bf8f014055931dd88d3.jpg"),
     new Generador("Chocolate", 500, 10, "https://cdn.colombia.com/gastronomia/2018/11/20/chocolate-caliente-con-bombones-1734.jpg"),
     new Generador("Fabrica de Marshmallows", 2000, 35, "https://media.istockphoto.com/photos/confectionery-factory-zephyr-and-marshmallows-production-machine-picture-id970519562"),
-    new Generador("Mercaditos", 5000, 50, "https://eldiariodefinanzas.com/wp-content/uploads/2020/09/Estas-son-las-10-empresas-de-dulces-con-m%C3%A1s-ventas-en-el-mundo.jpg"),
+    new Generador("Mercaditos", 5000, 50, "https://perspectiveinaction.com/wp-content/uploads/2018/05/CandyShop.jpg"),
+    new Generador("Fogatas",8000,100, "https://i.pinimg.com/originals/d5/93/f1/d593f1ce83cf587403acaf78a498721f.jpg"),
+    new Generador("Hombre Malvadisco",15000,300, "https://i.pinimg.com/originals/4d/6b/42/4d6b429ff2ce769cb4323bf9e4110f44.jpg")
+    
 ]
 
 const recalcularGalletasPorSegundo = () => {

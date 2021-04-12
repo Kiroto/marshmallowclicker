@@ -10,9 +10,6 @@ body {
     flex-wrap: nowrap;
 }
 
-#clickArea {
-    width: 50%;
-}
 
 #shop {
     border-style: groove;
@@ -31,6 +28,10 @@ body {
     border-color: aliceblue;
 }
 
+#clickArea {
+    text-align: center;
+}
+
 .marshmallowContainer {
     display: block;
     text-align: center;
@@ -39,6 +40,7 @@ body {
 }
 
 #marshmallow {
+    user-select: none;
     transition: 300ms; /* Velocidad de animacion */
     cursor: pointer; /* Pone el dedito */
     width: 100px;

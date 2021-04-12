@@ -25,7 +25,7 @@ const listaGeneradores = [
     "https://2.bp.blogspot.com/-Of7tRp6iu8I/V3Lgnx1g8-I/AAAAAAAA1N4/-02eFeHn7lUktSyQJnp0RFKxyzfgMQKrwCLcB/s640/IMG_7548%2B%2528640x427%2529.jpg"
   ),
   new Generador(
-    "hASUKhAL",
+    "Azúcar",
     100,
     1,
     "https://i.pinimg.com/originals/e2/ac/9e/e2ac9ef44dae4bf8f014055931dd88d3.jpg"

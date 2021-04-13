@@ -2,6 +2,8 @@ const espacioContador = document.getElementById("textoContador");
 const espacioMPS = document.getElementById("mps");
 const botonMarshmallow = document.getElementById("marshmallow");
 const espacioTienda = document.getElementById("shop");
+const espacioNombre = document.getElementById("nombreTienda");
+const botonCambiarNombre = document.getElementById("cambiarNombre");
 
 const msIn60FPS = (1 / 60) * 1000
 
@@ -31,6 +33,12 @@ botonMarshmallow.onclick = () => {
     clickMarshmallow();
 }
 
+botonCambiarNombre.onclick = () => {
+    const newNombre = prompt("Cual es el nuevo nombre?", nombreTienda)
+    nombreTienda = newNombre
+    recalcularMarshmallowsPorSegundo()
+}
+
 window.onload = () => {
     listaGeneradores.forEach((generador, id) => {
         const vistaGenerador = generadorAVista(generador, id)
@@ -40,5 +48,6 @@ window.onload = () => {
       tick(msIn60FPS);
       espacioContador.innerText = contadorMarshmallows.toFixed(0);
       espacioMPS.innerText = marshmallowsPorSegundo.toFixed(1)
+      espacioNombre.innerText = nombreTienda
     }, msIn60FPS);
 }

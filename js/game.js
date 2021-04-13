@@ -20,7 +20,7 @@ class Generador {
             return Math.floor(Math.pow(this.precioBase, ((15 + this.cuenta) / 15)))
         }
         this.getTotalCPS = () => {
-          return this.cuenta * this.galletasPorSegundo
+            return this.cuenta * this.galletasPorSegundo
         };
     }
 }
@@ -29,6 +29,8 @@ class Generador {
 let contadorMarshmallows = 0;
 // La cantidad de marshmallows por segundo que genera el jugador
 let marshmallowsPorSegundo = 0;
+// El nombre de la tienda
+let nombreTienda = "Batatanator"
 
 // La lista de generadores disponibles en el juego
 const listaGeneradores = [
@@ -47,6 +49,25 @@ const recalcularMarshmallowsPorSegundo = () => {
     listaGeneradores.forEach((generador) => {
         nuevosMarshmallowsPorSegundo += generador.getTotalCPS()
     });
+    switch (nombreTienda) {
+        case "Jerry":
+            nuevosMarshmallowsPorSegundo *= 1.1
+            break;
+        case "Villar":
+            nuevosMarshmallowsPorSegundo *= 1.07
+            break;
+        case "Capellan":
+            nuevosMarshmallowsPorSegundo *= 1.05
+            break
+        case "Eduardo":
+            nuevosMarshmallowsPorSegundo *= 1.03
+            break
+        default:
+            if(nombreTienda != "Batatanator") {
+                nuevosMarshmallowsPorSegundo *= 1.01
+            }
+            break;
+    }
     marshmallowsPorSegundo = nuevosMarshmallowsPorSegundo
 }
 

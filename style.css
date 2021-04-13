@@ -1,12 +1,74 @@
+body {
+    font-family: 'Comic Sans MS';
+    color: #111111;
+    font-size: 1.5em;
+    background-image: url("./img/fondo.png");
+}
+
+img {
+  object-fit: cover;
+}
+
 #main {
     display: flex;
     flex-wrap: nowrap;
 }
 
-#clickArea {
-    width: 50%;
+
+#shop {
+    border-style: groove;
+    border-width: 0.2cm;
+    border-color: aliceblue;
 }
 
+#shop > h1 {
+    text-align: center;
+    padding: 0.3cm;
+    border-bottom: 0.2cm;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-style: groove;
+    border-color: aliceblue;
+}
+
+#clickArea {
+    text-align: center;
+}
+
+.marshmallowContainer {
+    display: block;
+    text-align: center;
+    padding: auto;
+    height: 150px
+}
+
+#marshmallow {
+    user-select: none;
+    transition: 300ms; /* Velocidad de animacion */
+    cursor: pointer; /* Pone el dedito */
+    width: 100px;
+    -webkit-transition: 300ms; /* Velocidades de animacion en otros navegadores*/
+    -moz-transition: 300ms;
+    -ms-transition: 300ms;
+    -o-transition: 300ms;
+}
+
+#marshmallow:hover { /* Cuando se pasa mouse por arriba */
+    width: 150px;
+}
+
+#marshmallow:active { /* Cuando se hace clic */
+    transition: 10ms;
+    width: 140px;
+    -webkit-transition: 10ms;
+    -moz-transition: 10ms;
+    -ms-transition: 10ms;
+    -o-transition: 10ms;
+}
+
+
 .imagenProducto{
-    width: 8%;
+    height: 80px;
+    width: 80px;
 }

@@ -72,3 +72,12 @@ img {
     height: 80px;
     width: 80px;
 }
+footer * {
+    float:left;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+footer *:hover {
+    color:red;
+}
+

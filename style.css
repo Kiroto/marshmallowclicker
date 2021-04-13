@@ -16,6 +16,7 @@ img {
 
 
 #shop {
+    
     border-style: groove;
     border-width: 0.2cm;
     border-color: aliceblue;
@@ -30,6 +31,11 @@ img {
     border-top: 0;
     border-style: groove;
     border-color: aliceblue;
+}
+
+#shop div {
+    background-color: rgba(255, 255, 255, 0.5);
+    
 }
 
 #clickArea {

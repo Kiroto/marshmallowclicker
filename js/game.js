@@ -40,7 +40,7 @@ const listaGeneradores = [
     new Generador("Fabrica de Marshmallows", 2000, 35, "https://media.istockphoto.com/photos/confectionery-factory-zephyr-and-marshmallows-production-machine-picture-id970519562"),
     new Generador("Mercaditos", 5000, 50, "https://perspectiveinaction.com/wp-content/uploads/2018/05/CandyShop.jpg"),
     new Generador("Fogatas",8000,100, "https://i.pinimg.com/originals/d5/93/f1/d593f1ce83cf587403acaf78a498721f.jpg"),
-    new Generador("Hombre Malvadisco",15000,300, "https://i.pinimg.com/originals/4d/6b/42/4d6b429ff2ce769cb4323bf9e4110f44.jpg")
+    new Generador("Hombre Malvavisco",15000,300, "https://i.pinimg.com/originals/4d/6b/42/4d6b429ff2ce769cb4323bf9e4110f44.jpg")
 ]
 
 // Función auxiliar que actualiza los marshmallows por segundo en base a los generadores disponibles

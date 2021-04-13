@@ -24,6 +24,8 @@ img {
 
 #shop > h1 {
     text-align: center;
+    Position: relative;
+    margin: auto;
     padding: 0.3cm;
     border-bottom: 0.2cm;
     border-left: 0;
@@ -35,7 +37,6 @@ img {
 
 #shop div {
     background-color: rgba(255, 255, 255, 0.5);
-    
 }
 
 #clickArea {

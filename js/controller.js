@@ -13,7 +13,7 @@ const generadorAVista = (generador, id) => {
     const infoGenerador = document.createElement("span");
     const botonCompra = document.createElement("button")
     const ImagenGenerador = document.createElement("img");
-    ImagenGenerador.src = generador.ImagenDeTienda
+    ImagenGenerador.src = generador.imagenDeTienda
     ImagenGenerador.classList.add ("imagenProducto")
     infoGenerador.innerText = `${generador.cuenta} - ${generador.nombre} ($${generador.getPrecio()})`
     botonCompra.innerText = "Comprar"
@@ -28,7 +28,7 @@ const generadorAVista = (generador, id) => {
 }
 
 botonMarshmallow.onclick = () => {
-    clickGalleta();
+    clickMarshmallow();
 }
 
 window.onload = () => {
@@ -38,7 +38,7 @@ window.onload = () => {
     })
     setInterval(() => {
       tick(msIn60FPS);
-      espacioContador.innerText = contadorGalletas.toFixed(0);
-      espacioMPS.innerText = galletasPorSegundo.toFixed(1)
+      espacioContador.innerText = contadorMarshmallows.toFixed(0);
+      espacioMPS.innerText = marshmallowsPorSegundo.toFixed(1)
     }, msIn60FPS);
 }

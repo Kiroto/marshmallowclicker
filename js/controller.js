@@ -29,6 +29,13 @@ const generadorAVista = (generador, id) => {
     return espacioGenerador;
 }
 
+const update = (delta) => {
+    tick(delta);
+    espacioContador.innerText = contadorMarshmallows.toFixed(0);
+    espacioMPS.innerText = marshmallowsPorSegundo.toFixed(1);
+    espacioNombre.innerText = nombreTienda;
+}
+
 botonMarshmallow.onclick = () => {
     clickMarshmallow();
 }
@@ -39,15 +46,12 @@ botonCambiarNombre.onclick = () => {
     recalcularMarshmallowsPorSegundo()
 }
 
+
+
 window.onload = () => {
     listaGeneradores.forEach((generador, id) => {
         const vistaGenerador = generadorAVista(generador, id)
         espacioTienda.appendChild(vistaGenerador)
     })
-    setInterval(() => {
-      tick(msIn60FPS);
-      espacioContador.innerText = contadorMarshmallows.toFixed(0);
-      espacioMPS.innerText = marshmallowsPorSegundo.toFixed(1)
-      espacioNombre.innerText = nombreTienda
-    }, msIn60FPS);
+    setInterval(update(msIn60FPS), msIn60FPS);
 }

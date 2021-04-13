@@ -42,7 +42,7 @@ const listaGeneradores = [
 ]
 
 // Función auxiliar que actualiza los marshmallows por segundo en base a los generadores disponibles
-const recalcularGalletasPorSegundo = () => {
+const recalcularMarshmallowsPorSegundo = () => {
     let nuevosMarshmallowsPorSegundo = 0;
     listaGeneradores.forEach((generador) => {
         nuevosMarshmallowsPorSegundo += generador.getTotalCPS()
@@ -78,13 +78,13 @@ const comprarGenerador = (id) => {
     const pudoComprar = deducir(generador.getPrecio());
     if (pudoComprar) {
         generador.cuenta += 1
-        recalcularGalletasPorSegundo();
+        recalcularMarshmallowsPorSegundo();
     }
     return pudoComprar
 }
 
 /**
- * Función que genera más galletas en base a las galletas por segundo.
+ * Función que genera más marshmallows en base a los marshmallows por segundo.
  * @param {Number} delta El tiempo en milisegundos que ha pasado desde el ultimo tick
  */
 const tick = (delta) => {

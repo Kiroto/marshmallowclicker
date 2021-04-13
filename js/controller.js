@@ -46,12 +46,10 @@ botonCambiarNombre.onclick = () => {
     recalcularMarshmallowsPorSegundo()
 }
 
-
-
 window.onload = () => {
     listaGeneradores.forEach((generador, id) => {
         const vistaGenerador = generadorAVista(generador, id)
         espacioTienda.appendChild(vistaGenerador)
     })
-    setInterval(update(msIn60FPS), msIn60FPS);
+    setInterval(() => {update(msIn60FPS)}, msIn60FPS);
 }

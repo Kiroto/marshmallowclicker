@@ -24,7 +24,7 @@ img {
 /*Titulo de la tienda*/
 #shop > h1 {
     text-align: center;
-    Position: relative;
+    position: relative;
     margin: auto;
     padding: 0.3cm;
     border-bottom: 0.2cm;

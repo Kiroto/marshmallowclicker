@@ -13,14 +13,14 @@ class Generador {
     constructor(nombre, precio, marshmallowsPorSegundo, imagenDeTienda = "") {
         this.cuenta = 0
         this.nombre = nombre
-        this.galletasPorSegundo = marshmallowsPorSegundo
+        this.marshmallowPorSegundo = marshmallowsPorSegundo
         this.precioBase = precio
         this.imagenDeTienda = imagenDeTienda
         this.getPrecio = () => {
             return Math.floor(Math.pow(this.precioBase, ((15 + this.cuenta) / 15)))
         }
-        this.getTotalCPS = () => {
-            return this.cuenta * this.galletasPorSegundo
+        this.getTotalMPS = () => {
+            return this.cuenta * this.marshmallowPorSegundo
         };
     }
 }
@@ -47,7 +47,7 @@ const listaGeneradores = [
 const recalcularMarshmallowsPorSegundo = () => {
     let nuevosMarshmallowsPorSegundo = 0;
     listaGeneradores.forEach((generador) => {
-        nuevosMarshmallowsPorSegundo += generador.getTotalCPS()
+        nuevosMarshmallowsPorSegundo += generador.getTotalMPS()
     });
     switch (nombreTienda) {
         case "Jerry":

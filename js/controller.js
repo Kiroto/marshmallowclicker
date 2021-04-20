@@ -53,8 +53,16 @@ botonMarshmallow.onclick = () => {
  */
 botonCambiarNombre.onclick = () => {
     const newNombre = prompt("Cual es el nuevo nombre?", nombreTienda)
-    nombreTienda = newNombre
-    recalcularMarshmallowsPorSegundo()
+    
+    if (newNombre.length > 16){
+        alert("Muy largo, usar menos de 16 caracteres")
+        
+    }
+    else{
+        nombreTienda = newNombre
+        recalcularMarshmallowsPorSegundo()
+    }
+         
 }
 
 window.onload = () => {

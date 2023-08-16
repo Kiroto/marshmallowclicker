@@ -19,6 +19,8 @@ const crearHTMLdeGenerador = (generador, id) => {
     const botonCompra = document.createElement("button");
     const ImagenGenerador = document.createElement("img");
 
+    espacioGenerador.classList.add("espacio-generador");
+
     const generadorTextoDeTienda = (generador, id) => {
         return `${variablesDeJuego.generadores[id]} - ${generador.nombre} (+${
             generador.marshmallowPorSegundo

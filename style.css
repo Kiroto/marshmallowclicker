@@ -1,12 +1,12 @@
 body {
-    font-family: 'Comic Sans MS';
-    color: #111111;
+    font-family: "Comic Sans MS";
+    color: #eeeeee;
+    background-color: #111;
     font-size: 1.5em;
-    background-image: url("./img/fondo.png");
 }
 
 img {
-  object-fit: cover;
+    object-fit: cover;
 }
 
 #main {
@@ -14,9 +14,9 @@ img {
     flex-wrap: nowrap;
 }
 
-
 #shop {
-    
+    display: flex;
+    flex-direction: column;
     border-style: groove;
     border-width: 0.2cm;
     border-color: aliceblue;
@@ -47,10 +47,14 @@ img {
     display: block;
     text-align: center;
     padding: auto;
-    height: 150px
+    height: 150px;
 }
 
 #marshmallow {
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
     user-select: none;
     transition: 300ms; /* Velocidad de animacion */
     cursor: pointer; /* Pone el dedito */
@@ -61,11 +65,13 @@ img {
     -o-transition: 300ms;
 }
 
-#marshmallow:hover { /* Cuando se pasa mouse por arriba */
+#marshmallow:hover {
+    /* Cuando se pasa mouse por arriba */
     width: 150px;
 }
 
-#marshmallow:active { /* Cuando se hace clic */
+#marshmallow:active {
+    /* Cuando se hace clic */
     transition: 10ms;
     width: 140px;
     -webkit-transition: 10ms;
@@ -74,17 +80,61 @@ img {
     -o-transition: 10ms;
 }
 
+#textoContador {
+    color: #0ff;
+}
 
-.imagenProducto{
+.espacio-generador {
+    width: 100%;
+    gap: 1em;
+    display: flex;
+}
+
+.espacio-generador > *:nth-child(2) {
+    flex-grow: 1;
+}
+
+.imagenProducto {
     height: 80px;
     width: 80px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 1em;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    -ms-border-radius: 1em;
+    -o-border-radius: 1em;
 }
 footer * {
-    float:left;
+    float: left;
     text-decoration: none;
     box-sizing: border-box;
 }
 footer *:hover {
-    color:red;
+    color: red;
 }
 
+button {
+    transition: 300ms;
+    border-radius: 0.5em;
+    padding: 0.5em;
+    -webkit-border-radius: 0.5em;
+    -moz-border-radius: 0.5em;
+    -ms-border-radius: 0.5em;
+    -o-border-radius: 0.5em;
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+    -ms-transition: 300ms;
+    -o-transition: 300ms;
+
+    border-color: darkgreen;
+    color: darkgreen;
+}
+
+button:hover {
+    background-color: greenyellow;
+}
+
+button:active {
+    background-color: green;
+}

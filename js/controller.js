@@ -18,17 +18,20 @@ const crearHTMLdeGenerador = (generador, id) => {
     const infoGenerador = document.createElement("span");
     const botonCompra = document.createElement("button");
     const ImagenGenerador = document.createElement("img");
+
+    const generadorTextoDeTienda = (generador, id) => {
+        return `${variablesDeJuego.generadores[id]} - ${generador.nombre} (+${
+            generador.marshmallowPorSegundo
+        }mps) ($${getPrecioGenerador(id)}); (${getGeneracionDeGenerador(id)}mps)`;
+    };
+
     ImagenGenerador.src = generador.imagenDeTienda;
     ImagenGenerador.classList.add("imagenProducto");
-    infoGenerador.innerText = `${generador.cuenta} - ${
-        generador.nombre
-    } ($${getPrecioGenerador(id)})`;
+    infoGenerador.innerText = generadorTextoDeTienda(generador, id);
     botonCompra.innerText = "Comprar";
     botonCompra.onclick = () => {
         comprarGenerador(id);
-        infoGenerador.innerText = `${generador.cuenta} - ${
-            generador.nombre
-        } ($${getPrecioGenerador(id)})`;
+        infoGenerador.innerText = generadorTextoDeTienda(generador, id);
     };
     espacioGenerador.appendChild(ImagenGenerador);
     espacioGenerador.appendChild(infoGenerador);

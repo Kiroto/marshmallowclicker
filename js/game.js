@@ -86,12 +86,16 @@ const variablesDeJuego = {
     mejoras: Array(listaMejoras.length).fill(0),
 };
 
+const getGeneracionDeGenerador = (idGenerador) => {
+    return listaGeneradores[idGenerador].marshmallowPorSegundo *
+        variablesDeJuego.generadores[idGenerador];
+};
+
 // Función auxiliar que actualiza los marshmallows por segundo en base a los generadores disponibles
 const recalcularMarshmallowsPorSegundo = () => {
     let nuevosMarshmallowsPorSegundo = 0;
     listaGeneradores.forEach((generador, idx) => {
-        nuevosMarshmallowsPorSegundo +=
-            generador.marshmallowPorSegundo * variablesDeJuego.generadores[idx];
+        nuevosMarshmallowsPorSegundo += getGeneracionDeGenerador(idx);
     });
     switch (nombreTienda) {
         case "Jerry":

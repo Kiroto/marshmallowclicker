@@ -4,6 +4,8 @@ const botonMarshmallow = document.getElementById("marshmallow");
 const espacioTienda = document.getElementById("shop");
 const espacioNombre = document.getElementById("nombreTienda");
 const botonCambiarNombre = document.getElementById("cambiarNombre");
+const botonCargar = document.getElementById("cargar");
+const botonGuardar = document.getElementById("guardar");
 
 /**
  * Toma como parametro un generador y una posición en la lista de generadores
@@ -12,23 +14,34 @@ const botonCambiarNombre = document.getElementById("cambiarNombre");
  * @returns {HTMLDivElement} la fila de tienda de ese generador.
  */
 const crearHTMLdeGenerador = (generador, id) => {
-    const espacioGenerador = document.createElement("div")
+    const espacioGenerador = document.createElement("div");
     const infoGenerador = document.createElement("span");
-    const botonCompra = document.createElement("button")
+    const botonCompra = document.createElement("button");
     const ImagenGenerador = document.createElement("img");
-    ImagenGenerador.src = generador.imagenDeTienda
-    ImagenGenerador.classList.add ("imagenProducto")
-    infoGenerador.innerText = `${generador.cuenta} - ${generador.nombre} ($${generador.getPrecio()})`
-    botonCompra.innerText = "Comprar"
+    ImagenGenerador.src = generador.imagenDeTienda;
+    ImagenGenerador.classList.add("imagenProducto");
+    infoGenerador.innerText = `${generador.cuenta} - ${
+        generador.nombre
+    } ($${getPrecioGenerador(id)})`;
+    botonCompra.innerText = "Comprar";
     botonCompra.onclick = () => {
-        comprarGenerador(id)
-        infoGenerador.innerText = `${generador.cuenta} - ${generador.nombre} ($${generador.getPrecio()})`
-    }
-    espacioGenerador.appendChild(ImagenGenerador)
+        comprarGenerador(id);
+        infoGenerador.innerText = `${generador.cuenta} - ${
+            generador.nombre
+        } ($${getPrecioGenerador(id)})`;
+    };
+    espacioGenerador.appendChild(ImagenGenerador);
     espacioGenerador.appendChild(infoGenerador);
-    espacioGenerador.appendChild(botonCompra)
+    espacioGenerador.appendChild(botonCompra);
     return espacioGenerador;
-}
+};
+
+const refreshUI = () => {
+    espacioContador.innerText =
+        variablesDeJuego.contadorMarshmallows.toFixed(0);
+    espacioMPS.innerText = marshmallowsPorSegundo.toFixed(1);
+    espacioNombre.innerText = variablesDeJuego.nombreTienda;
+};
 
 /**
  * Actualiza el juego dado un intervalo de tiempo (una fracción de tiempo entre fotogramas)
@@ -36,41 +49,48 @@ const crearHTMLdeGenerador = (generador, id) => {
  */
 const update = (delta) => {
     tick(delta);
-    espacioContador.innerText = contadorMarshmallows.toFixed(0);
-    espacioMPS.innerText = marshmallowsPorSegundo.toFixed(1);
-    espacioNombre.innerText = nombreTienda;
-}
+    refreshUI();
+};
 
 /**
  * Conecta el evento onClick del botón marshmallow al modelo
  */
 botonMarshmallow.onclick = () => {
     clickMarshmallow();
-}
+};
 
 /**
  * Conecta el evento onClick del botón para cambiar el nombre al cambio de nombre
  */
 botonCambiarNombre.onclick = () => {
-    const newNombre = prompt("Cual es el nuevo nombre?", nombreTienda)
-    
-    if (newNombre.length > 16){
-        alert("Muy largo, usar menos de 16 caracteres")
-        
+    const newNombre = prompt(
+        "Cual es el nuevo nombre?",
+        variablesDeJuego.nombreTienda
+    );
+
+    if (newNombre.length > 16) {
+        alert("Muy largo, usar menos de 16 caracteres");
+    } else {
+        variablesDeJuego.nombreTienda = newNombre;
+        recalcularMarshmallowsPorSegundo();
     }
-    else{
-        nombreTienda = newNombre
-        recalcularMarshmallowsPorSegundo()
-    }
-         
-}
+};
+
+botonGuardar.onclick = () => {
+    guardar();
+};
+
+botonCargar.onclick = () => {
+    cargar();
+};
 
 window.onload = () => {
+    console.log(variablesDeJuego);
     const msIn60FPS = (1 / 60) * 1000; // Intervalo de tiempo de refresco
 
     listaGeneradores.forEach((elementoDelArreglo, id) => {
-      const vistaGenerador = crearHTMLdeGenerador(elementoDelArreglo, id);
-      espacioTienda.appendChild(vistaGenerador);
+        const vistaGenerador = crearHTMLdeGenerador(elementoDelArreglo, id);
+        espacioTienda.appendChild(vistaGenerador);
     });
     setInterval(() => {
         update(msIn60FPS);

@@ -34,32 +34,32 @@ const listaGeneradores = [
     ),
     new Generador(
         "Chocolate",
-        500,
-        10,
+        1100,
+        8,
         "https://cdn.colombia.com/gastronomia/2018/11/20/chocolate-caliente-con-bombones-1734.jpg"
     ),
     new Generador(
         "Fabrica de Marshmallows",
-        2000,
-        35,
+        12000,
+        48,
         "https://media.istockphoto.com/photos/confectionery-factory-zephyr-and-marshmallows-production-machine-picture-id970519562"
     ),
     new Generador(
         "Mercaditos",
-        5000,
-        50,
+        130000,
+        260,
         "https://perspectiveinaction.com/wp-content/uploads/2018/05/CandyShop.jpg"
     ),
     new Generador(
         "Fogatas",
-        8000,
-        100,
+        1400000,
+        1400,
         "https://i.pinimg.com/originals/d5/93/f1/d593f1ce83cf587403acaf78a498721f.jpg"
     ),
     new Generador(
         "Hombre Malvavisco",
-        15000,
-        300,
+        20000000,
+        7800,
         "https://i.pinimg.com/originals/4d/6b/42/4d6b429ff2ce769cb4323bf9e4110f44.jpg"
     ),
 ];
@@ -70,7 +70,7 @@ const getPrecioGenerador = (idGenerador) => {
     const generador = listaGeneradores[idGenerador];
     const cuentaComprada = variablesDeJuego.generadores[idGenerador];
     return Math.floor(
-        Math.pow(generador.precioBase, (15 + cuentaComprada) / 15)
+        Math.pow(generador.precioBase, (20 + cuentaComprada) / 20)
     );
 };
 

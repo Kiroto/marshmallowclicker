@@ -167,6 +167,7 @@ const cargar = () => {
         JSON.parse(localStorage.getItem("saveData"))
     );
     recalcularMarshmallowsPorSegundo();
+    refreshShop();
 };
 
 /**

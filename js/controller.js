@@ -22,7 +22,13 @@ const crearHTMLdeGenerador = (generador, id) => {
     const generadorTextoDeTienda = (generador, id) => {
         return `${variablesDeJuego.generadores[id]} - ${generador.nombre} (+${
             generador.marshmallowPorSegundo
-        }mps) ($${getPrecioGenerador(id)}); (${getGeneracionDeGenerador(id)}mps)`;
+        }mps) ($${getPrecioGenerador(id).toFixed(
+            0
+        )}); (${getGeneracionDeGenerador(id).toFixed(1)}mps)`;
+    };
+
+    const refrescarTextoGenerador = () => {
+        infoGenerador.innerText = generadorTextoDeTienda(generador, id);
     };
 
     ImagenGenerador.src = generador.imagenDeTienda;
@@ -31,12 +37,12 @@ const crearHTMLdeGenerador = (generador, id) => {
     botonCompra.innerText = "Comprar";
     botonCompra.onclick = () => {
         comprarGenerador(id);
-        infoGenerador.innerText = generadorTextoDeTienda(generador, id);
+        refrescarTextoGenerador();
     };
     espacioGenerador.appendChild(ImagenGenerador);
     espacioGenerador.appendChild(infoGenerador);
     espacioGenerador.appendChild(botonCompra);
-    return espacioGenerador;
+    return [espacioGenerador, refrescarTextoGenerador];
 };
 
 const refreshUI = () => {
@@ -87,13 +93,24 @@ botonCargar.onclick = () => {
     cargar();
 };
 
+updateFunctions = [];
+
+const refreshShop = () => {
+    updateFunctions.forEach((updf) => {
+        updf();
+    });
+};
+
 window.onload = () => {
-    console.log(variablesDeJuego);
     const msIn60FPS = (1 / 60) * 1000; // Intervalo de tiempo de refresco
 
     listaGeneradores.forEach((elementoDelArreglo, id) => {
-        const vistaGenerador = crearHTMLdeGenerador(elementoDelArreglo, id);
-        espacioTienda.appendChild(vistaGenerador);
+        const vistaGeneradorYRefresco = crearHTMLdeGenerador(
+            elementoDelArreglo,
+            id
+        );
+        espacioTienda.appendChild(vistaGeneradorYRefresco[0]);
+        updateFunctions.push(vistaGeneradorYRefresco[1]);
     });
     setInterval(() => {
         update(msIn60FPS);
